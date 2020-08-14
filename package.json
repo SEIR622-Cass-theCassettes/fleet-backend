@@ -1,12 +1,23 @@
 {
   "name": "fleet-backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SEIR622-Cass-theCassettes/fleet-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SEIR622-Cass-theCassettes/fleet-backend/issues"
+  },
+  "homepage": "https://github.com/SEIR622-Cass-theCassettes/fleet-backend#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
