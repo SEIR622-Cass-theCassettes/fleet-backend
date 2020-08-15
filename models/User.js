@@ -1,9 +1,9 @@
 const mongoose = require('../db/connection');
 
 const UserSchema = new mongoose.Schema({
-    id: Number,
-    Name: String,
+    name: String,
 	body: String,
+	email: String,
 	author: {
 		ref: 'truck',
 		type: mongoose.ObjectId,
