@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const trucksController = require('./controllers/trucks');
 const usersController = require('./controllers/users');
+const millageController = require('./controllers/millage');
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(cors());
 //Routes
 app.use('/api/trucks', trucksController);
 app.use('/api/users', usersController);
-
+app.use('/api/millage', millageController);
 
 app.set('port', process.env.PORT || 8000);
 
