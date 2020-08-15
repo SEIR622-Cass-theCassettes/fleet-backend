@@ -1,12 +1,24 @@
 const mongoose = require('../db/connection');
 
 const truckSchema = new mongoose.Schema({
-	Name: String,
-	body: String,
-	author: {
-		ref: 'user',
-		type: mongoose.ObjectId,
-	},
+    name: String,
+    owner: String,
+	make: String,
+    model: String,
+    vin: String,
+    plate: String,
+    status: String,
+    milage: Number,
+    lastServiced: Number,
+    serviceDue: Number,
+    notes: {
+        ref: 'notes',
+        type: mongoose.ObjectId,
+    },
+    lastUsers: {
+        ref: 'users',
+        type: mongoose.ObjectId,
+    }
 });
 
 const Truck = mongoose.model('Truck', truckSchema);
