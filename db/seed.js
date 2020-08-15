@@ -1,4 +1,3 @@
-
 const Truck = require('../models/Truck');
 const User = require('../models/User');
 const Millage = require('../models/Millage');
@@ -38,7 +37,7 @@ User.deleteMany({}).then(() => {
 						});
 					})
 					.then(() => {
-                        console.log("Paul's truck created with millage");
+						console.log("Paul's truck created with millage");
 						User.create({
 							name: 'Sergei Brin',
 							email: 'sergei@google.com',
@@ -55,19 +54,19 @@ User.deleteMany({}).then(() => {
 								milage: 125000,
 								lastServiced: new Date('2020-08-11'),
 								serviceDue: new Date('2020-11-01'),
-							})
-								.then((truck) => {
-									Millage.create({
-										user: truck.owner,
-										truck: truck['_id'],
-										millage: 120049,
-									}).then(() => {
-										console.log("Sergei's truck created with millage");
-										process.exit();
-									});;
-								})
-								
+							}).then((truck) => {
+								Millage.create({
+									user: truck.owner,
+									truck: truck['_id'],
+									millage: 120049,
+								}).then(() => {
+									console.log("Sergei's truck created with millage");
+									process.exit();
+								});
+							});
 						});
 					});
 			});
 		});
+	});
+});
