@@ -1,6 +1,9 @@
+
 const Truck = require('../models/Truck');
 const User = require('../models/User');
 const Millage = require('../models/Millage');
+
+const mongoose = require('./connection');
 
 // clear the database of records using both models
 User.deleteMany({}).then(() => {
@@ -68,5 +71,3 @@ User.deleteMany({}).then(() => {
 					});
 			});
 		});
-	});
-});
