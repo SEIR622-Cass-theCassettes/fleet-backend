@@ -11,7 +11,6 @@ const truckSchema = new mongoose.Schema({
 	vin: String,
 	plate: String,
 	status: String,
-	milage: Number,
 	lastServiced: Date,
 	serviceDue: Date,
 	lastUsers: {

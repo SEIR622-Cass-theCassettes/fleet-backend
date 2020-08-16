@@ -8,7 +8,8 @@ mongoose.Promise = Promise;
 
 // set the uri for connecting to our local mongodb
 const mongoURI =
-	process.env.NODE_ENV === 'production'
+	process.env.NODE_ENV === 'production' ||
+	process.env.NODE_ENV === 'development'
 		? process.env.DB_URL
 		: 'mongodb://localhost/fleet';
 
