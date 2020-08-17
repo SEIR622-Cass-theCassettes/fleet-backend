@@ -30,4 +30,22 @@ router.delete('/:id', (req, res) => {
 	});
 });
 
+router.post('/signup', (req, res, next) => {
+	bcrypt
+		.hash(req.body.password, 10)
+		.then((hash) => ({
+			email: req.body.email,
+			password: hash,
+		}))
+		.then((user) => User.create(user))
+		.catch(next);
+});
+
+router.post('/signin', (req, res, next) => {
+	User.findOne({ email: req.body.email })
+		.then((user) => createUserToken(req, user))
+		.then((token) => res.json({ token }))
+		.catch(next);
+});
+
 module.exports = router;
