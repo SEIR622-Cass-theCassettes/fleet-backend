@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const { createUserToken } = require('../middleware/auth');
+
 
 router.get('/', (req, res) => {
 	User.find().then((allUsers) => {
