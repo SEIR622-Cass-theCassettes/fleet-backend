@@ -19,6 +19,13 @@ app.use('/api/trucks', trucksController);
 app.use('/api/users', usersController);
 app.use('/api/millage', millageController);
 
+const {
+	handleErrors,
+	handleValidationErrors,
+} = require('./middleware/custom_errors');
+app.use(handleValidationErrors);
+app.use(handleErrors);
+
 app.set('port', process.env.PORT || 8000);
 
 app.listen(app.get('port'), () => {
