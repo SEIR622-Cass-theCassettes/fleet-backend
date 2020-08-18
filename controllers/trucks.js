@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const Truck = require('../models/Truck');
+const {
+	handleValidateId,
+	handleRecordExists,
+	handleValidateOwnership,
+} = require('../middleware/custom_errors');
 const { requireToken } = require('../middleware/auth');
 
 router.get('/', (req, res) => {
