@@ -11,13 +11,6 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.post('/', (req, res) => {
-	const newUser = req.body;
-	User.create(newUser).then((created) => {
-		res.json(created);
-	});
-});
-
 router.put('/:id', (req, res) => {
 	User.findOneAndUpdate({ _id: req.params.id }, req.body).then((prevRecord) => {
 		res.json(prevRecord);
