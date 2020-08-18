@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Truck = require('../models/Truck');
+const { requireToken } = require('../middleware/auth');
 
 router.get('/', (req, res) => {
 	Truck.find({}).then((allTrucks) => res.json(allTrucks));
@@ -8,10 +9,11 @@ router.get('/', (req, res) => {
 router.get('/:vin', (req, res) => {
 	Truck.findOne({ vin: req.params.vin }).then((Truck) => res.json(Truck));
 });
-router.post('/', (req, res) => {
+router.post('/', requireToken, (req, res, next) => {
 	const newTruck = req.body;
-	Truck.create(req.body)
-		.then((Truck) => res.json(Truck));
+	Truck.create({ ...req.body, owner: req.user._id })
+		.then((Truck) => res.status(201).json(Truck))
+		.catch(next);
 });
 
 router.put('/:vin', (req, res) => {
