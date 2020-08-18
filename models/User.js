@@ -3,19 +3,14 @@ const mongoose = require('../db/connection');
 const UserSchema = new mongoose.Schema(
 	{
 		name: String,
-		body: String,
 		email: {
-            type: String,
-            required: true,
-            unique: true,
-        },
-        password: {
-            type: String,
-            required: true,
-        },
-		author: {
-			ref: 'truck',
-			type: mongoose.ObjectId,
+			type: String,
+			required: true,
+			unique: true,
+		},
+		password: {
+			type: String,
+			required: true,
 		},
 	},
 	{
