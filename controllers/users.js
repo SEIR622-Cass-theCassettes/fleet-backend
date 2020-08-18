@@ -31,6 +31,7 @@ router.post('/signup', (req, res, next) => {
 			password: hash,
 		}))
 		.then((user) => User.create(user))
+		.then((user) => res.status(201).json(user))
 		.catch(next);
 });
 
