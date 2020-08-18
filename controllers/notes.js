@@ -10,11 +10,15 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/user/:user', (req, res) => {
-	Note.find({ user: req.params.user }).then((Note) => res.json(Note));
+	Note.find({ user: req.params.user })
+		.sort({ timestamp: -1 })
+		.then((Note) => res.json(Note));
 });
 
 router.get('/truck/:truck', (req, res) => {
-	Note.find({ truck: req.params.truck }).then((Note) => res.json(Note));
+	Note.find({ truck: req.params.truck })
+		.sort({ timestamp: -1 })
+		.then((Note) => res.json(Note));
 });
 
 router.post('/', (req, res) => {
