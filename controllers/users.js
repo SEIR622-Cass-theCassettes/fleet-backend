@@ -11,13 +11,6 @@ router.get('/', (req, res) => {
 	});
 });
 
-router.post('/', (req, res) => {
-	const newUser = req.body;
-	User.create(newUser).then((created) => {
-		res.json(created);
-	});
-});
-
 router.put('/:id', (req, res) => {
 	User.findOneAndUpdate({ _id: req.params.id }, req.body).then((prevRecord) => {
 		res.json(prevRecord);
@@ -38,6 +31,7 @@ router.post('/signup', (req, res, next) => {
 			password: hash,
 		}))
 		.then((user) => User.create(user))
+		.then((user) => res.status(201).json(user))
 		.catch(next);
 });
 
