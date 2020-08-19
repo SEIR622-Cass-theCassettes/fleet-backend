@@ -4,7 +4,7 @@ const trucksController = require('./controllers/trucks');
 const usersController = require('./controllers/users');
 const mileageController = require('./controllers/mileage');
 const notesController = require('./controllers/notes');
-
+const orgsController = require('./controllers/orgs')
 const app = express();
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use('/api/trucks', trucksController);
 app.use('/api/users', usersController);
 app.use('/api/mileage', mileageController);
 app.use('/api/notes', notesController);
-
+app.use('/api/orgs', orgsController)
 const {
 	handleErrors,
 	handleValidationErrors,
