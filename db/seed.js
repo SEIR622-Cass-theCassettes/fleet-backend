@@ -1,6 +1,6 @@
 const Truck = require('../models/Truck');
 const User = require('../models/User');
-const Millage = require('../models/Millage');
+const Mileage = require('../models/Mileage');
 
 const mongoose = require('./connection');
 
@@ -9,8 +9,8 @@ User.deleteMany({}).then(() => {
 	console.log('deleted all users');
 	Truck.deleteMany({}).then(() => {
 		console.log('deleted all Trucks');
-		Millage.deleteMany({}).then(() => {
-			console.log('deleted all Millage');
+		Mileage.deleteMany({}).then(() => {
+			console.log('deleted all Mileage');
 			// create a user
 			User.create({
 				name: 'Paul Allen',
@@ -25,19 +25,19 @@ User.deleteMany({}).then(() => {
 					vin: 'gfewgfu38jhdew82o',
 					plate: 'BTE FX8U',
 					status: 'ready',
-					milage: 10000,
+					mileage: 10000,
 					lastServiced: new Date('2020-08-01'),
 					serviceDue: new Date('2020-10-01'),
 				})
 					.then((truck) => {
-						Millage.create({
+						Mileage.create({
 							user: truck.owner,
 							truck: truck['_id'],
-							millage: 123000,
+							mileage: 123000,
 						});
 					})
 					.then(() => {
-						console.log("Paul's truck created with millage");
+						console.log("Paul's truck created with mileage");
 						User.create({
 							name: 'Sergei Brin',
 							email: 'sergei@google.com',
@@ -51,16 +51,16 @@ User.deleteMany({}).then(() => {
 								vin: 'najogfkqopa0ksdsgh90',
 								plate: 'AITL IUUU',
 								status: 'being_serviced',
-								milage: 125000,
+								mileage: 125000,
 								lastServiced: new Date('2020-08-11'),
 								serviceDue: new Date('2020-11-01'),
 							}).then((truck) => {
-								Millage.create({
+								Mileage.create({
 									user: truck.owner,
 									truck: truck['_id'],
-									millage: 120049,
+									mileage: 120049,
 								}).then(() => {
-									console.log("Sergei's truck created with millage");
+									console.log("Sergei's truck created with mileage");
 									process.exit();
 								});
 							});

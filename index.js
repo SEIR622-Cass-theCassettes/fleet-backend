@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const trucksController = require('./controllers/trucks');
 const usersController = require('./controllers/users');
-const millageController = require('./controllers/millage');
+const mileageController = require('./controllers/mileage');
 const notesController = require('./controllers/notes');
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(cors());
 //Routes
 app.use('/api/trucks', trucksController);
 app.use('/api/users', usersController);
-app.use('/api/millage', millageController);
+app.use('/api/mileage', mileageController);
 app.use('/api/notes', notesController);
 
 const {
