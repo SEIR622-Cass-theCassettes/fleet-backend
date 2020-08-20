@@ -13,8 +13,11 @@ User.deleteMany({}).then(() => {
 			console.log('deleted all Mileage');
 			// create a user
 			User.create({
-				name: 'Paul Allen',
-				email: 'paul@microsoft.com',
+				name: 'Cassio Hudson',
+				email: 'c@g.com',
+				//password is: password
+				password:
+					'$2b$10$XABPeRL.BdxTnnUGv1Qgzey10.1Hgl5KedgDk7wNMa55MpOzeb.Yi',
 			}).then((paul) => {
 				// create two Trucks and associate one with the user
 				Truck.create({
@@ -39,8 +42,11 @@ User.deleteMany({}).then(() => {
 					.then(() => {
 						console.log("Paul's truck created with mileage");
 						User.create({
-							name: 'Sergei Brin',
-							email: 'sergei@google.com',
+							name: 'Boo H',
+							email: 'b@g.com',
+							//password is: password
+							password:
+								'$2b$10$5KtHaGp5N9IMHZnBWMlljeRemxoiuyrkkxrUnHGbi6DJacqxlCeH.',
 						}).then((sergei) => {
 							// create three Trucks and associate one with the user
 							Truck.create({

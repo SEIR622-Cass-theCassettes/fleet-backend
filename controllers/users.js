@@ -17,10 +17,15 @@ router.get('/:email', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	const newUser = req.body;
-	User.create(newUser).then((created) => {
-		res.json(created);
-	});
+	bcrypt
+		.hash(req.body.password, 10)
+		.then((hash) => ({
+			email: req.body.email,
+			password: hash,
+			name: req.body.name,
+		}))
+		.then((user) => User.create(user))
+		.then((user) => res.status(201).json(user));
 });
 
 router.put('/:id', (req, res) => {
