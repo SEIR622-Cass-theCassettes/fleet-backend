@@ -4,10 +4,15 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { createUserToken } = require('../middleware/auth');
 
-
 router.get('/', (req, res) => {
 	User.find().then((allUsers) => {
 		res.json(allUsers);
+	});
+});
+
+router.get('/:email', (req, res) => {
+	User.findOne({ email: req.params.email }).then((user) => {
+		res.json(user);
 	});
 });
 
@@ -31,6 +36,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post('/signup', (req, res, next) => {
+	console.log(req);
 	bcrypt
 		.hash(req.body.password, 10)
 		.then((hash) => ({
@@ -38,6 +44,7 @@ router.post('/signup', (req, res, next) => {
 			password: hash,
 		}))
 		.then((user) => User.create(user))
+		.then(() => res.sendStatus(200))
 		.catch(next);
 });
 
