@@ -24,9 +24,33 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-	User.findOneAndUpdate({ _id: req.params.id }, req.body).then((prevRecord) => {
-		res.json(prevRecord);
-	});
+	if (req.body.password) {
+		console.log(req);
+		bcrypt
+			.hash(req.body.password, 10)
+			.then((hash) => ({
+				email: req.body.email,
+				password: hash,
+				name: req.body.name,
+			}))
+			.then((user) =>
+				User.findOneAndUpdate({ _id: req.params.id }, user).then(
+					(prevRecord) => {
+						User.findById(req.params.id).then((user) => {
+							res.json(user);
+						});
+					}
+				)
+			);
+	} else {
+		User.findOneAndUpdate({ _id: req.params.id }, req.body).then(
+			(prevRecord) => {
+				User.findById(req.params.id).then((user) => {
+					res.json(user);
+				});
+			}
+		);
+	}
 });
 
 router.delete('/:id', (req, res) => {
@@ -36,12 +60,12 @@ router.delete('/:id', (req, res) => {
 });
 
 router.post('/signup', (req, res, next) => {
-	console.log(req);
 	bcrypt
 		.hash(req.body.password, 10)
 		.then((hash) => ({
 			email: req.body.email,
 			password: hash,
+			name: req.body.name,
 		}))
 		.then((user) => User.create(user))
 		.then((user) => res.status(201).json(user))
