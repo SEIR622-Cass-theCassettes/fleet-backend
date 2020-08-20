@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
 		toJSON: {
 			virtuals: true,
 			transform: (_doc, ret) => {
-				delete ret.password;
+			delete ret.password;
 				return ret;
 			},
 		},
