@@ -11,8 +11,8 @@ const truckSchema = new mongoose.Schema({
 	vin: String,
 	plate: String,
 	status: String,
-	lastServiced: Date,
-	serviceDue: Date,
+	lastServiced: String,
+	serviceDue: String,
 	lastUsers: {
 		ref: 'users',
 		type: mongoose.ObjectId,
